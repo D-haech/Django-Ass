@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{student.profile.username}}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'about.css' %}">
+       
+       
+    </head>
+  <body>
+    <!-- Profile Header -->
+    <section class="profile-header">
+      <div class="container text-center">
+        <img
+          src="{{ student.profile.profile_pic.url }}"
+          alt="Profile Picture"
+        />
+
+        <h1>{{student.surname}} {{student.first_name}}</h1>
+
+        <p>
+          {% for prog in student.program_set.all %} {{prog.course}} {% endfor %}
+          | Cohort 2023
+        </p>
+        <span class="badge badge-custom">{{student.rating}} Rating</span>
+      </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="profile-content">
+      <div class="container">
+        <div class="row">
+          <!-- About the Student -->
+          <div class="col-md-8">
+            <div class="card p-4">
+              <h5>About {{student.first_name}}</h5>
+              <p>
+                {{student.first_name}} {{student.surname}} is a dedicated and
+                passionate student of {% for prog in student.program_set.all %}
+                {{prog.course}} {% endfor %} in the 2023 Cohort. With excellent
+                problem-solving skills and a keen interest in web development,
+                {{student.first_name}} has consistently been a top performer in the program.
+              </p>
+              <p>
+                Date of Birth: {{student.profile.date_of_birth}} <br />
+                Address: {{student.profile.address}} <br />
+                Joined: {{student.profile.date_joined}}
+              </p>
+              <button class="btn btn-custom">Send Message</button>
+            </div>
+          </div>
+
+          <!-- Related Students -->
+          <div class="col-md-4">
+            <div class="card p-4">
+              <h5>Related Students (Same Cohort)</h5>
+              <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                  <img
+                    src="https://via.placeholder.com/50"
+                    alt="Student"
+                    class="related-student-img"
+                  />
+                  <div class="ms-3">
+                    <h6 class="mb-0">Jane Smith</h6>
+                    <small>Software Engineering</small>
+                  </div>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                  <img
+                    src="https://via.placeholder.com/50"
+                    alt="Student"
+                    class="related-student-img"
+                  />
+                  <div class="ms-3">
+                    <h6 class="mb-0">David Lee</h6>
+                    <small>Data Science</small>
+                  </div>
+                </li>
+                <li class="d-flex align-items-center">
+                  <img
+                    src="https://via.placeholder.com/50"
+                    alt="Student"
+                    class="related-student-img"
+                  />
+                  <div class="ms-3">
+                    <h6 class="mb-0">Sarah Adams</h6>
+                    <small>UI/UX Design</small>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="row mt-4">
+          <div class="col-md-8"></div>
+
+          <!-- Follow Me Section -->
+          <div class="col-md-4">
+            <div class="card p-4">
+              <h5>Follow Me</h5>
+              <div class="follow-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </body>
+</html>
