@@ -35,7 +35,7 @@ class Program(models.Model):
 class Cohort(models.Model):
     cohort_name = models.CharField(max_length=200)
     date_join = models.DateTimeField(auto_now_add=True)
-    students = models.ManyToManyField(Student, related_name="cohort")
+    students = models.ManyToManyField(Student)
 
     def __str__(self):
         return self.cohort_name
